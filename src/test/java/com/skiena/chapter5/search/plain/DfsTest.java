@@ -4,6 +4,7 @@ import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
 import com.skiena.chapter5.search.TestGraphSource;
 import com.skiena.chapter5.search.plain.bfs.BfsPrint;
+import com.skiena.chapter5.search.plain.dfs.DfsFindCycles;
 import com.skiena.chapter5.search.plain.dfs.DfsPrint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,13 @@ class DfsTest {
         Vertex firstVertex = graph.getVertex(1);
         final SearchStructure state = alg.dfs(graph, firstVertex);
         state.printSearchTree(graph, firstVertex);
+    }
+
+    @Test
+    @DisplayName("Find cycle = find any BACK edge")
+    void findCycle() throws IOException {
+        final Graph graph = TestGraphSource.undirectedGraph();
+        new DfsFindCycles().dfs(graph, graph.getVertex(1));
     }
 
 }

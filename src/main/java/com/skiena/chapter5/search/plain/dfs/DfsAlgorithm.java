@@ -7,6 +7,8 @@ import com.skiena.chapter5.search.plain.SearchStructure;
 
 public abstract class DfsAlgorithm {
 
+    protected boolean finished = false;
+
     public SearchStructure dfs(Graph graph, Vertex firstVertex) {
         final SearchStructure state = new SearchStructure(graph);
         dfs(graph, firstVertex, state);
@@ -14,6 +16,9 @@ public abstract class DfsAlgorithm {
     }
 
     private void dfs(Graph g, Vertex vDiscoverer, SearchStructure state) {
+        if (finished) {
+            return;
+        }
         state.markDiscovered(vDiscoverer);
 
         process_Vertex_Early(vDiscoverer);
@@ -25,15 +30,18 @@ public abstract class DfsAlgorithm {
 
             if (state.isUndiscovered(vSuccessor)) {
                 state.setParent(vDiscoverer, vSuccessor);
-                process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.TREE_EDGE);
+                process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.TREE_EDGE, state);
                 dfs(g, vSuccessor, state);
             }
             else if ((!state.isProcessed(vSuccessor) && state.getParent(vDiscoverer) != vSuccessor) || g.isDirected()) {
-                process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.BACK_EDGE);
+                process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.BACK_EDGE, state);
             } else {
                 process_Edge_Late(vDiscoverer, vSuccessor);
             }
 
+            if (finished) {
+                return;
+            }
             edgeNode = edgeNode.getNext();
         }
 
@@ -45,7 +53,7 @@ public abstract class DfsAlgorithm {
 
     protected abstract void process_Vertex_Late(Vertex vertex);
 
-    protected abstract void process_Edge_Early(Vertex v1, Vertex v2, EdgeType edgeType);
+    protected abstract void process_Edge_Early(Vertex v1, Vertex v2, EdgeType edgeType, SearchStructure state);
 
     protected abstract void process_Edge_Late(Vertex v1, Vertex v2);
 

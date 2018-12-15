@@ -57,22 +57,6 @@ public abstract class BfsAlgorithm {
         }
     }
 
-    public void connectedComponents(Graph g) {
-        BfsAlgorithm alg = new BfsPrint();
-        SearchStructure state = new SearchStructure(g);
-
-        int counter = 0;
-        for (int i = 1; i <= g.getVerticesCount(); i++) {
-            Vertex vertex = g.getVertex(i);
-
-            if (state.isUndiscovered(vertex)) {
-                System.out.println("Component " + ++counter);
-                alg.bfs(g, vertex, state);
-                System.out.println();
-            }
-        }
-    }
-
     /*
      * Technical.
      */
