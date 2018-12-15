@@ -3,6 +3,7 @@ package com.skiena.chapter5.search.plain.bfs;
 import com.skiena.chapter5.dto.EdgeNode;
 import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
+import com.skiena.chapter5.search.plain.SearchStructure;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -14,17 +15,18 @@ import java.util.stream.Collectors;
 
 public abstract class BfsAlgorithm {
 
-    public BfsStructure bfs(Graph g, Vertex firstVertex) {
-        BfsStructure state = new BfsStructure(g);
+    public SearchStructure bfs(Graph g, Vertex firstVertex) {
+        final SearchStructure state = new SearchStructure(g);
         bfs(g, firstVertex, state);
         return state;
     }
 
-    private void bfs(Graph g, Vertex firstVertex, BfsStructure state) {
+    private void bfs(Graph g, Vertex firstVertex, SearchStructure state) {
         final Queue<Vertex> queue = new LinkedList<>();
 
         // first vertex
-        state.markDiscovered(null, firstVertex);
+        state.markDiscovered(firstVertex);
+        state.setParent(null, firstVertex);
         queue.add(firstVertex);
 
         // queue
@@ -43,7 +45,8 @@ public abstract class BfsAlgorithm {
                     process_Edge(vDiscoverer, vSuccessor);
                 }
                 if (state.isUndiscovered(vSuccessor)) {
-                    state.markDiscovered(vDiscoverer, vSuccessor);
+                    state.markDiscovered(vSuccessor);
+                    state.setParent(vDiscoverer, vSuccessor);
                     queue.add(vSuccessor);
                 }
 
@@ -54,18 +57,9 @@ public abstract class BfsAlgorithm {
         }
     }
 
-    public void findPath(Vertex vStart, Vertex vEnd, Vertex[] parent) {
-        if (vEnd == null || vStart.getId() == vEnd.getId()) {
-            System.out.print("Path: " + vStart);
-        } else {
-            findPath(vStart, parent[vEnd.getId()], parent);
-            System.out.print(" -> " + vEnd);
-        }
-    }
-
     public void connectedComponents(Graph g) {
         BfsAlgorithm alg = new BfsPrint();
-        BfsStructure state = new BfsStructure(g);
+        SearchStructure state = new SearchStructure(g);
 
         int counter = 0;
         for (int i = 1; i <= g.getVerticesCount(); i++) {
@@ -82,24 +76,6 @@ public abstract class BfsAlgorithm {
     /*
      * Technical.
      */
-
-    public void printBfsTree(Graph g, Vertex firstVertex, Vertex[] parent) {
-        for (Vertex leaf : findAllLeaves(g.getVertices(), parent)) {
-            findPath(firstVertex, leaf, parent);
-            System.out.println();
-        }
-    }
-
-    private Set<Vertex> findAllLeaves(Vertex[] allVertices, Vertex[] parent) {
-        Set<Integer> allParents = new HashSet<>();
-        Arrays.stream(parent)
-                .filter(Objects::nonNull)
-                .forEach(vertex -> allParents.add(vertex.getId()));
-        return Arrays.stream(allVertices)
-                .filter(Objects::nonNull)
-                .filter(vertex -> !allParents.contains(vertex.getId()))
-                .collect(Collectors.toSet());
-    }
 
     protected abstract void process_Vertex_Early(Vertex vertex);
 

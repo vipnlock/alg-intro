@@ -3,27 +3,18 @@ package com.skiena.chapter5.search.plain.dfs;
 import com.skiena.chapter5.dto.EdgeNode;
 import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.dto.VertexState;
+import com.skiena.chapter5.search.plain.SearchStructure;
 
 public abstract class DfsAlgorithm {
 
-    public Vertex[] dfs(Graph g, Vertex firstVertex) {
-        VertexState[] state = new VertexState[g.getVerticesCount() + 1];
-        Vertex[] parent = new Vertex[g.getVerticesCount() + 1];
-
-        // initialize
-        for (int i = 0; i <= g.getVerticesCount(); i++) {
-            state[i] = VertexState.UNDISCOVERED;
-            parent[i] = null;
-        }
-
-        dfs(g, firstVertex, state, parent);
-        return parent;
+    public SearchStructure dfs(Graph graph, Vertex firstVertex) {
+        final SearchStructure state = new SearchStructure(graph);
+        dfs(graph, firstVertex, state);
+        return state;
     }
 
-    private void dfs(Graph g, Vertex vDiscoverer, VertexState[] state, Vertex[] parent) {
-        int vDiscovererId = vDiscoverer.getId();
-        state[vDiscovererId] = VertexState.DISCOVERED;
+    private void dfs(Graph g, Vertex vDiscoverer, SearchStructure state) {
+        state.markDiscovered(vDiscoverer);
 
         process_Vertex_Early(vDiscoverer);
 
@@ -32,12 +23,12 @@ public abstract class DfsAlgorithm {
             final int vSuccessorId = edgeNode.getVertexId();
             final Vertex vSuccessor = g.getVertex(vSuccessorId);
 
-            if (state[vSuccessorId] == VertexState.UNDISCOVERED) {
-                parent[vSuccessorId] = vDiscoverer;
+            if (state.isUndiscovered(vSuccessor)) {
+                state.setParent(vDiscoverer, vSuccessor);
                 process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.TREE_EDGE);
-                dfs(g, vSuccessor, state, parent);
+                dfs(g, vSuccessor, state);
             }
-            else if ((state[vSuccessorId] != VertexState.PROCESSED && parent[vDiscovererId] != vSuccessor) || g.isDirected()) {
+            else if ((!state.isProcessed(vSuccessor) && state.getParent(vDiscoverer) != vSuccessor) || g.isDirected()) {
                 process_Edge_Early(vDiscoverer, vSuccessor, EdgeType.BACK_EDGE);
             } else {
                 process_Edge_Late(vDiscoverer, vSuccessor);
@@ -47,7 +38,7 @@ public abstract class DfsAlgorithm {
         }
 
         process_Vertex_Late(vDiscoverer);
-        state[vDiscovererId] = VertexState.PROCESSED;
+        state.markProcessed(vDiscoverer);
     }
 
     protected abstract void process_Vertex_Early(Vertex vertex);

@@ -19,8 +19,8 @@ class DfsTest {
         final DfsPrint alg = new DfsPrint();
 
         Vertex firstVertex = graph.getVertex(1);
-        final Vertex[] parent = alg.dfs(graph, firstVertex);
-        new BfsPrint().printBfsTree(graph, firstVertex, parent);
+        final SearchStructure state = alg.dfs(graph, firstVertex);
+        state.printSearchTree(graph, firstVertex);
     }
 
     @Test
@@ -30,8 +30,8 @@ class DfsTest {
         final DfsPrint alg = new DfsPrint();
 
         Vertex firstVertex = graph.getVertex(1);
-        final Vertex[] parent = alg.dfs(graph, firstVertex);
-        new BfsPrint().printBfsTree(graph, firstVertex, parent);
+        final SearchStructure state = alg.dfs(graph, firstVertex);
+        state.printSearchTree(graph, firstVertex);
     }
 
 }
