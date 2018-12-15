@@ -21,7 +21,7 @@ public abstract class BfsAlgorithm {
         return state;
     }
 
-    private void bfs(Graph g, Vertex firstVertex, SearchStructure state) {
+    protected void bfs(Graph g, Vertex firstVertex, SearchStructure state) {
         final Queue<Vertex> queue = new LinkedList<>();
 
         // first vertex

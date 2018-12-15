@@ -4,6 +4,7 @@ import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
 import com.skiena.chapter5.search.TestGraphSource;
 import com.skiena.chapter5.search.plain.bfs.BfsPrint;
+import com.skiena.chapter5.search.plain.bfs.BfsTwoColor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +46,13 @@ class BfsTest {
     void connectedComponentsUndirectedGraph() throws IOException {
         final Graph graph = TestGraphSource.notConnectedUndirectedGraph();
         new BfsPrint().connectedComponents(graph);
+    }
+
+    @Test
+    @DisplayName("Two color, undirected")
+    void twoColorTest() throws IOException {
+        final Graph graph = TestGraphSource.undirectedGraph();
+        new BfsTwoColor().twoColor(graph);
     }
 
 }
