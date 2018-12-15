@@ -10,14 +10,12 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DfsTest {
 
     @Test
     @DisplayName("DFS directed")
     void dfsDirected() throws IOException {
-        final Graph graph = TestGraphSource.readDirectedGraph();
+        final Graph graph = TestGraphSource.directedGraph();
         final DfsPrint alg = new DfsPrint();
 
         Vertex firstVertex = graph.getVertex(1);
@@ -28,7 +26,7 @@ class DfsTest {
     @Test
     @DisplayName("DFS undirected")
     void dfsUndirected() throws IOException {
-        final Graph graph = TestGraphSource.readUndirectedGraph();
+        final Graph graph = TestGraphSource.undirectedGraph();
         final DfsPrint alg = new DfsPrint();
 
         Vertex firstVertex = graph.getVertex(1);

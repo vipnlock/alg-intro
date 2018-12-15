@@ -14,7 +14,7 @@ class JavaBfsTest {
     @Test
     @DisplayName("BFS directed graph, implemented first java way")
     void bfsDirected() throws IOException {
-        Graph graph = TestGraphSource.readDirectedGraph();
+        Graph graph = TestGraphSource.directedGraph();
         final BfsStructure state = new JavaBfsPrint().bfs(graph, graph.getVertex(1));
         state.printOut(graph.getVertices());
     }
@@ -22,7 +22,7 @@ class JavaBfsTest {
     @Test
     @DisplayName("BFS directed graph, implemented first java way")
     void bfsUndirected() throws IOException {
-        Graph graph = TestGraphSource.readUndirectedGraph();
+        Graph graph = TestGraphSource.undirectedGraph();
         final BfsStructure state = new JavaBfsPrint().bfs(graph, graph.getVertex(1));
         state.printOut(graph.getVertices());
     }

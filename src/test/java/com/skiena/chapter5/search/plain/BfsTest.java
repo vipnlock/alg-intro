@@ -15,7 +15,7 @@ class BfsTest {
     @Test
     @DisplayName("BFS directed")
     void bfsDirected() throws IOException {
-        final Graph graph = TestGraphSource.readDirectedGraph();
+        final Graph graph = TestGraphSource.directedGraph();
         final BfsPrint alg = new BfsPrint();
         final Vertex firstVertex = graph.getVertex(1);
 
@@ -26,7 +26,7 @@ class BfsTest {
     @Test
     @DisplayName("BFS undirected")
     void bfsUndirected() throws IOException {
-        final Graph graph = TestGraphSource.readUndirectedGraph();
+        final Graph graph = TestGraphSource.undirectedGraph();
         final BfsPrint alg = new BfsPrint();
         final Vertex firstVertex = graph.getVertex(1);
 
@@ -39,8 +39,16 @@ class BfsTest {
     }
 
     @Test
-    void connectedComponents() throws IOException {
-        final Graph graph = TestGraphSource.readUndirectedGraph();
+    @DisplayName("Connected components, directed")
+    void connectedComponentsDirectedGraph() throws IOException {
+        final Graph graph = TestGraphSource.notConnectedDirectedGraph();
+        new BfsPrint().connectedComponents(graph);
+    }
+
+    @Test
+    @DisplayName("Connected components, undirected")
+    void connectedComponentsUndirectedGraph() throws IOException {
+        final Graph graph = TestGraphSource.notConnectedUndirectedGraph();
         new BfsPrint().connectedComponents(graph);
     }
 

@@ -14,7 +14,7 @@ class JavaPseudoDfsTest {
     @Test
     @DisplayName("DFS directed graph, java way")
     void dfsDirected() throws IOException {
-        Graph g = TestGraphSource.readDirectedGraph();
+        Graph g = TestGraphSource.directedGraph();
         final PseudoDfsStructure state = new JavaPseudoDfsPrint().dfs(g, g.getVertex(1));
         state.printOut(g.getVertices());
     }
@@ -22,7 +22,7 @@ class JavaPseudoDfsTest {
     @Test
     @DisplayName("DFS undirected graph, java way")
     void dfsUndirected() throws IOException {
-        Graph g = TestGraphSource.readUndirectedGraph();
+        Graph g = TestGraphSource.undirectedGraph();
         final PseudoDfsStructure state = new JavaPseudoDfsPrint().dfs(g, g.getVertex(1));
         state.printOut(g.getVertices());
     }

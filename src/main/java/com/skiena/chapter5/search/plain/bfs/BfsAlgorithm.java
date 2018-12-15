@@ -39,7 +39,7 @@ public abstract class BfsAlgorithm {
                 final int vSuccessorId = edgeNode.getVertexId();
                 final Vertex vSuccessor = g.getVertex(vSuccessorId);
 
-                if (state.isProcessed(vSuccessor) || g.isDirected()) {
+                if (!state.isProcessed(vSuccessor) || g.isDirected()) {
                     process_Edge(vDiscoverer, vSuccessor);
                 }
                 if (state.isUndiscovered(vSuccessor)) {
@@ -71,9 +71,11 @@ public abstract class BfsAlgorithm {
         for (int i = 1; i <= g.getVerticesCount(); i++) {
             Vertex vertex = g.getVertex(i);
 
-            System.out.print("Component " + ++counter);
-            alg.bfs(g, vertex, state);
-            System.out.println();
+            if (state.isUndiscovered(vertex)) {
+                System.out.println("Component " + ++counter);
+                alg.bfs(g, vertex, state);
+                System.out.println();
+            }
         }
     }
 
