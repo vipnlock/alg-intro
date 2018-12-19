@@ -27,6 +27,6 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return id + "(" + value1 + "," + value2 + ")";
+        return "(" + id + ")" /* + "(" + value1 + "," + value2 + ")" */;
     }
 }

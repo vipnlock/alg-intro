@@ -1,5 +1,6 @@
 package com.skiena.chapter5.search.plain;
 
+import com.skiena.chapter5.dto.EdgeNode;
 import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
 import com.skiena.chapter5.dto.VertexState;
@@ -15,9 +16,19 @@ public class SearchStructure {
     private final VertexState[] state;
     private final Vertex[] parent;
 
+    private final int[] entryTime;
+    private final int[] exitTime;
+    private final EdgeNode[] treeEdges;
+
+    private int time;
+
     public SearchStructure(Graph g) {
         this.state = new VertexState[g.getVerticesCount() + 1];
         this.parent = new Vertex[g.getVerticesCount() + 1];
+
+        this.entryTime = new int[g.getVerticesCount() + 1];
+        this.exitTime = new int[g.getVerticesCount() + 1];
+        this.treeEdges = new EdgeNode[g.getVerticesCount() + 1];
 
         // initialize
         for (int i = 0; i <= g.getVerticesCount(); i++) {
@@ -26,30 +37,56 @@ public class SearchStructure {
         }
     }
 
-    public void setParent(Vertex discoverer, Vertex vertex) {
-        parent[vertex.getId()] = discoverer;
-    }
+    // discovered
     public void markDiscovered(Vertex vertex) {
         state[vertex.getId()] = VertexState.DISCOVERED;
+        entryTime[vertex.getId()] = ++time;
     }
-
-    public void markProcessed(Vertex vertex) {
-        state[vertex.getId()] = VertexState.PROCESSED;
+    public void setParent(Vertex discoverer, Vertex vertex) {
+        parent[vertex.getId()] = discoverer;
     }
 
     public boolean isUndiscovered(Vertex vertex) {
         return state[vertex.getId()] == VertexState.UNDISCOVERED;
     }
 
+    // processed
+    public void markProcessed(Vertex vertex) {
+        state[vertex.getId()] = VertexState.PROCESSED;
+        exitTime[vertex.getId()] = ++time;
+    }
+
     public boolean isProcessed(Vertex vertex) {
         return state[vertex.getId()] == VertexState.PROCESSED;
     }
 
+    // parents
     public Vertex[] getParent() {
         return parent;
     }
     public Vertex getParent(Vertex v) {
         return parent[v.getId()];
+    }
+
+    // timings
+
+    public int getEntryTime(Vertex vertex) {
+        return entryTime[vertex.getId()];
+    }
+
+    public int getExitTime(Vertex vertex) {
+        return exitTime[vertex.getId()];
+    }
+
+    // tree edges
+    public void addTreeEdge(Vertex x, Vertex y) {
+        EdgeNode tmp = treeEdges[x.getId()];
+        treeEdges[x.getId()] = new EdgeNode(y.getId(), 0);
+        treeEdges[x.getId()].setNext(tmp);
+    }
+
+    public EdgeNode getTreeEdges(Vertex vertex) {
+        return treeEdges[vertex.getId()];
     }
 
     /*

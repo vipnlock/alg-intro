@@ -13,7 +13,7 @@ public class DfsFindCycles extends DfsAlgorithm {
     }
 
     @Override
-    protected void process_Vertex_Late(Vertex vertex) {
+    protected void process_Vertex_Late(Vertex vertex, SearchStructure state) {
 
     }
 

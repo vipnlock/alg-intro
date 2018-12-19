@@ -45,13 +45,13 @@ public abstract class DfsAlgorithm {
             edgeNode = edgeNode.getNext();
         }
 
-        process_Vertex_Late(vDiscoverer);
+        process_Vertex_Late(vDiscoverer, state);
         state.markProcessed(vDiscoverer);
     }
 
     protected abstract void process_Vertex_Early(Vertex vertex);
 
-    protected abstract void process_Vertex_Late(Vertex vertex);
+    protected abstract void process_Vertex_Late(Vertex vertex, SearchStructure state);
 
     protected abstract void process_Edge_Early(Vertex v1, Vertex v2, EdgeType edgeType, SearchStructure state);
 

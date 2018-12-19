@@ -11,7 +11,7 @@ public class DfsPrint extends DfsAlgorithm {
     }
 
     @Override
-    protected void process_Vertex_Late(Vertex vertex) {
+    protected void process_Vertex_Late(Vertex vertex, SearchStructure state) {
         System.out.println("<<< Vertex: " + vertex);
     }
 

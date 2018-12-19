@@ -32,4 +32,10 @@ public class TestGraphSource {
         return g;
     }
 
+    public static Graph cutnodeGraph() throws IOException {
+        Graph g = new GraphReader().read(new File("src/test/resources/chapter5/cutnode.txt"));
+        System.out.println(g.toString());
+        return g;
+    }
+
 }

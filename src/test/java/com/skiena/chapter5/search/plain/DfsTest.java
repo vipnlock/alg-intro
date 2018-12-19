@@ -3,7 +3,7 @@ package com.skiena.chapter5.search.plain;
 import com.skiena.chapter5.dto.Graph;
 import com.skiena.chapter5.dto.Vertex;
 import com.skiena.chapter5.search.TestGraphSource;
-import com.skiena.chapter5.search.plain.bfs.BfsPrint;
+import com.skiena.chapter5.search.plain.dfs.DfsArticulationVertices;
 import com.skiena.chapter5.search.plain.dfs.DfsFindCycles;
 import com.skiena.chapter5.search.plain.dfs.DfsPrint;
 import org.junit.jupiter.api.DisplayName;
@@ -40,6 +40,13 @@ class DfsTest {
     void findCycle() throws IOException {
         final Graph graph = TestGraphSource.undirectedGraph();
         new DfsFindCycles().dfs(graph, graph.getVertex(1));
+    }
+
+    @Test
+    @DisplayName("Find articulation vertices")
+    void findArticulationVertices() throws IOException {
+        final Graph graph = TestGraphSource.cutnodeGraph();
+        SearchStructure state = new DfsArticulationVertices(graph).dfs(graph, graph.getVertex(1));
     }
 
 }
