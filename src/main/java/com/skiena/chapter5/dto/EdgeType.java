@@ -1,4 +1,4 @@
-package com.skiena.chapter5.search.plain.dfs;
+package com.skiena.chapter5.dto;
 
 public enum EdgeType {
 

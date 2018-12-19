@@ -49,9 +49,11 @@ public class GraphReader {
                     } else {
                         matcher = EDGE_PATTERN.matcher(line);
                         if (matcher.matches()) {
-                            var v1Id = Integer.parseInt(matcher.group(1));
-                            var v2Id = Integer.parseInt(matcher.group(2));
-                            graph.insertEdge(v1Id, v2Id);
+                            var fromVertexId = Integer.parseInt(matcher.group(1));
+                            var toVertexId = Integer.parseInt(matcher.group(2));
+                            graph.insertEdge(fromVertexId, toVertexId);
+                        } else {
+                            System.out.println("Ignore unparseable line: " + line);
                         }
                     }
                 }
@@ -59,12 +61,14 @@ public class GraphReader {
         }
 
         if (graph != null) {
-            if (verticesCount != graph.getVerticesCount()) {
-                throw new IllegalStateException("Number of vertices does not match: " + verticesCount + " != " + graph.getVerticesCount());
+            if (verticesCount != graph.getNumberOfVertices()) {
+                throw new IllegalStateException("Number of vertices does not match: " + verticesCount + " != " + graph.getNumberOfVertices());
             }
-            if (edgesCount != graph.getEdgesCount()) {
-                throw new IllegalStateException("Number of edges does not match: " + edgesCount + " != " + graph.getEdgesCount());
+            if (edgesCount != graph.getNumberOfEdges()) {
+                throw new IllegalStateException("Number of edges does not match: " + edgesCount + " != " + graph.getNumberOfEdges());
             }
+
+            graph.invertEdgesOrder();
         }
         return graph;
     }

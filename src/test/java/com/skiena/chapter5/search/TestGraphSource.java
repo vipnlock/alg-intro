@@ -32,8 +32,20 @@ public class TestGraphSource {
         return g;
     }
 
+    public static Graph twoColorGraph() throws IOException {
+        Graph g = new GraphReader().read(new File("src/test/resources/chapter5/twocolor.txt"));
+        System.out.println(g.toString());
+        return g;
+    }
+
     public static Graph cutnodeGraph() throws IOException {
         Graph g = new GraphReader().read(new File("src/test/resources/chapter5/cutnode.txt"));
+        System.out.println(g.toString());
+        return g;
+    }
+
+    public static Graph lineGraph() throws IOException {
+        Graph g = new GraphReader().read(new File("src/test/resources/chapter5/line_graph.txt"));
         System.out.println(g.toString());
         return g;
     }
