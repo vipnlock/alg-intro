@@ -1,4 +1,4 @@
-package com.skiena.chapter5.dto;
+package com.skiena.chapter5.graph;
 
 public enum VertexState {
 

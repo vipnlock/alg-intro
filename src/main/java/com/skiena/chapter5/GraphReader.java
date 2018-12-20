@@ -1,7 +1,7 @@
 package com.skiena.chapter5;
 
-import com.skiena.chapter5.dto.Graph;
-import com.skiena.chapter5.dto.Vertex;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
 
 import java.io.BufferedReader;
 import java.io.File;

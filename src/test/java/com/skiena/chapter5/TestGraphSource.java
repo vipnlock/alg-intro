@@ -1,7 +1,7 @@
-package com.skiena.chapter5.search;
+package com.skiena.chapter5;
 
 import com.skiena.chapter5.GraphReader;
-import com.skiena.chapter5.dto.Graph;
+import com.skiena.chapter5.graph.Graph;
 
 import java.io.File;
 import java.io.IOException;

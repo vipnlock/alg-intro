@@ -1,7 +1,7 @@
-package com.skiena.chapter5.search.dfs;
+package com.skiena.chapter5.dfs;
 
-import com.skiena.chapter5.dto.EdgeType;
-import com.skiena.chapter5.dto.Vertex;
+import com.skiena.chapter5.graph.EdgeType;
+import com.skiena.chapter5.graph.Vertex;
 
 public class DfsFindCycles extends DFS {
 

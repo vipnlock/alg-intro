@@ -1,10 +1,10 @@
-package com.skiena.chapter5.search.dfs;
+package com.skiena.chapter5.dfs;
 
-import com.skiena.chapter5.dto.Edge;
-import com.skiena.chapter5.dto.EdgeType;
-import com.skiena.chapter5.dto.Graph;
-import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.dto.VertexState;
+import com.skiena.chapter5.graph.Edge;
+import com.skiena.chapter5.graph.EdgeType;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter5.graph.VertexState;
 
 public abstract class DFS {
 

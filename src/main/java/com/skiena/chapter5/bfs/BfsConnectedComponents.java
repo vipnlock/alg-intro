@@ -1,9 +1,9 @@
-package com.skiena.chapter5.search.bfs;
+package com.skiena.chapter5.bfs;
 
-import com.skiena.chapter5.dto.Graph;
-import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.dto.VertexState;
-import com.skiena.chapter5.search.SearchDataStructure;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter5.graph.VertexState;
+import com.skiena.chapter5.SearchDataStructure;
 
 public class BfsConnectedComponents extends BFS {
 

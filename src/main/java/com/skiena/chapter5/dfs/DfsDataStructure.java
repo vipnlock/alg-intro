@@ -1,8 +1,8 @@
-package com.skiena.chapter5.search.dfs;
+package com.skiena.chapter5.dfs;
 
-import com.skiena.chapter5.dto.Edge;
-import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.search.SearchDataStructure;
+import com.skiena.chapter5.graph.Edge;
+import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter5.SearchDataStructure;
 
 public class DfsDataStructure extends SearchDataStructure {
 

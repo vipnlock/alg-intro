@@ -1,10 +1,10 @@
-package com.skiena.chapter5.search;
+package com.skiena.chapter5;
 
-import com.skiena.chapter5.dto.Graph;
-import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.search.bfs.BfsConnectedComponents;
-import com.skiena.chapter5.search.bfs.BfsPrint;
-import com.skiena.chapter5.search.bfs.BfsTwoColor;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter5.bfs.BfsConnectedComponents;
+import com.skiena.chapter5.bfs.BfsPrint;
+import com.skiena.chapter5.bfs.BfsTwoColor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

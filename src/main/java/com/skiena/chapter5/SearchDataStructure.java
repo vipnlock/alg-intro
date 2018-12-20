@@ -1,8 +1,8 @@
-package com.skiena.chapter5.search;
+package com.skiena.chapter5;
 
-import com.skiena.chapter5.dto.Graph;
-import com.skiena.chapter5.dto.Vertex;
-import com.skiena.chapter5.dto.VertexState;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter5.graph.VertexState;
 
 import java.util.Arrays;
 import java.util.HashSet;
