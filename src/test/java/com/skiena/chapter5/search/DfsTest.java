@@ -7,6 +7,7 @@ import com.skiena.chapter5.search.dfs.DfsDataStructure;
 import com.skiena.chapter5.search.dfs.DfsFindCycles;
 import com.skiena.chapter5.search.dfs.DfsPrint;
 import com.skiena.chapter5.search.dfs.DfsStrongComponents;
+import com.skiena.chapter5.search.dfs.DfsTopologicalSorting;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +56,13 @@ class DfsTest {
     void findArticulationVerticesTwoNodes() throws IOException {
         final Graph graph = TestGraphSource.lineGraph();
         DfsDataStructure state = new DfsArticulationVertices(graph.getNumberOfVertices()).dfs(graph, graph.getVertex(1));
+    }
+
+    @Test
+    @DisplayName("Topological sorting")
+    void topSort() throws IOException {
+        final Graph graph = TestGraphSource.topSortGraph();
+        new DfsTopologicalSorting().topSort(graph);
     }
 
     @Test

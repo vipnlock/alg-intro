@@ -50,6 +50,12 @@ public class TestGraphSource {
         return g;
     }
 
+    public static Graph topSortGraph() throws IOException {
+        Graph g = new GraphReader().read(new File("src/test/resources/chapter5/top_sort.txt"));
+        System.out.println(g.toString());
+        return g;
+    }
+
     public static Graph stronglyConnectedGraph() throws IOException {
         Graph g = new GraphReader().read(new File("src/test/resources/chapter5/strongly_connected_components.txt"));
         System.out.println(g.toString());
