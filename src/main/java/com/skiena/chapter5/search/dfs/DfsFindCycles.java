@@ -19,7 +19,7 @@ public class DfsFindCycles extends DFS {
     protected void processEdgeFirst(Vertex current, Vertex successor, EdgeType edgeType, DfsDataStructure state) {
         System.out.println("Edge: " + current + " -> " + successor);
 
-        if (edgeType == EdgeType.BACK_EDGE) {
+        if (edgeType == EdgeType.BACK) {
             System.out.println("Cycle found: ");
             state.findPath(successor, current);
             state.finish();

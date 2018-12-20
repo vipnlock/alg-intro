@@ -6,6 +6,7 @@ import com.skiena.chapter5.search.dfs.DfsArticulationVertices;
 import com.skiena.chapter5.search.dfs.DfsDataStructure;
 import com.skiena.chapter5.search.dfs.DfsFindCycles;
 import com.skiena.chapter5.search.dfs.DfsPrint;
+import com.skiena.chapter5.search.dfs.DfsStrongComponents;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -54,6 +55,24 @@ class DfsTest {
     void findArticulationVerticesTwoNodes() throws IOException {
         final Graph graph = TestGraphSource.lineGraph();
         DfsDataStructure state = new DfsArticulationVertices(graph.getNumberOfVertices()).dfs(graph, graph.getVertex(1));
+    }
+
+    @Test
+    @DisplayName("Strongly connected graph")
+    void stronglyConnectedGraph() throws IOException {
+        final Graph graph = TestGraphSource.stronglyConnectedGraph();
+        DfsStrongComponents alg = new DfsStrongComponents(graph.getNumberOfVertices());
+        alg.strongComponents(graph);
+        alg.printResult();
+    }
+
+    @Test
+    @DisplayName("Strongly connected graph 2")
+    void stronglyConnectedGraph2() throws IOException {
+        final Graph graph = TestGraphSource.stronglyConnectedGraph2();
+        DfsStrongComponents alg = new DfsStrongComponents(graph.getNumberOfVertices());
+        alg.strongComponents(graph);
+        alg.printResult();
     }
 
 }

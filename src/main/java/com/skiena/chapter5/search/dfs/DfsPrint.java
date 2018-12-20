@@ -28,7 +28,7 @@ public class DfsPrint extends DFS {
     @Override
     protected void processEdgeFirst(Vertex current, Vertex successor, EdgeType edgeType, DfsDataStructure state) {
         System.out.println(String.join(".", vertices) + " > " + current
-                + " -" + (edgeType == EdgeType.BACK_EDGE ? "BACK-" : "") + "> " + successor);
+                + " -" + (edgeType == EdgeType.BACK ? "BACK-" : "") + "> " + successor);
     }
 
     @Override

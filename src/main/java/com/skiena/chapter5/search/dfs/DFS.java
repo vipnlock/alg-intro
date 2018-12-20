@@ -14,7 +14,7 @@ public abstract class DFS {
         return state;
     }
 
-    public void dfs(Graph graph, Vertex current, DfsDataStructure state) {
+    protected void dfs(Graph graph, Vertex current, DfsDataStructure state) {
         if (state.isFinished()) {
             return;
         }
@@ -29,11 +29,19 @@ public abstract class DFS {
 
             if (successorState == VertexState.UNDISCOVERED) {
                 state.setParent(successor, current);
-                processEdgeFirst(current, successor, EdgeType.TREE_EDGE, state);
+                processEdgeFirst(current, successor, EdgeType.TREE, state);
                 dfs(graph, successor, state);
 
-            } else if ((successorState != VertexState.PROCESSED && state.getParent(current) != successor) || graph.isDirected()) {
-                processEdgeFirst(current, successor, EdgeType.BACK_EDGE, state);
+            } else if (successorState != VertexState.PROCESSED && (state.getParent(current) != successor || graph.isDirected())) {
+                processEdgeFirst(current, successor, EdgeType.BACK, state);
+
+            } else if (successorState == VertexState.PROCESSED && graph.isDirected()) {
+                if (state.getEntryTime(successor) > state.getEntryTime(current)) {
+                    processEdgeFirst(current, successor, EdgeType.FORWARD, state);
+                }
+                if (state.getEntryTime(successor) < state.getEntryTime(current)) {
+                    processEdgeFirst(current, successor, EdgeType.CROSS, state);
+                }
 
             } else {
                 processEdgeSecond(current, successor);

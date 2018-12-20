@@ -68,10 +68,11 @@ public class DfsArticulationVertices extends DFS {
 
     @Override
     void processEdgeFirst(Vertex current, Vertex successor, EdgeType edgeType, DfsDataStructure state) {
-        if (edgeType == EdgeType.TREE_EDGE) {
+        if (edgeType == EdgeType.TREE) {
             treeOutDegree[current.getId()]++;
             state.addTreeEdge(current, successor);
-        } else if (edgeType == EdgeType.BACK_EDGE) {
+
+        } else if (edgeType == EdgeType.BACK) {
             if (state.getEntryTime(successor) < state.getEntryTime(reachableAncestor[current.getId()])) {
                 reachableAncestor[current.getId()] = successor;
             }
