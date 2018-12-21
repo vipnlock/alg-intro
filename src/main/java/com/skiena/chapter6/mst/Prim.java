@@ -9,12 +9,12 @@ public class Prim {
     public Vertex[] prim(Graph graph, Vertex vStart) {
         boolean[] inTree = new boolean[graph.getNumberOfVertices() + 1];
         int[] distanceFromTree = new int[graph.getNumberOfVertices() + 1];
-        Vertex[] parentInTree = new Vertex[graph.getNumberOfVertices() + 1];
+        Vertex[] parent = new Vertex[graph.getNumberOfVertices() + 1];
 
         for (int i = 0; i <= graph.getNumberOfVertices(); i++) {
             inTree[i] = false;
             distanceFromTree[i] = Integer.MAX_VALUE;
-            parentInTree[i] = null;
+            parent[i] = null;
         }
 
         Vertex current = vStart;
@@ -30,7 +30,7 @@ public class Prim {
                 if (!inTree[vCandidateId]) {
                     if (distanceFromTree[vCandidateId] > edge.getWeight()) {
                         distanceFromTree[vCandidateId] = edge.getWeight();
-                        parentInTree[vCandidateId] = current;
+                        parent[vCandidateId] = current;
                     }
                 }
                 edge = edge.getNext();
@@ -45,7 +45,7 @@ public class Prim {
             }
         }
 
-        return parentInTree;
+        return parent;
     }
 
 }
