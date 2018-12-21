@@ -1,13 +1,13 @@
 package com.skiena.chapter5;
 
-import com.skiena.chapter5.graph.Graph;
-import com.skiena.chapter5.graph.Vertex;
 import com.skiena.chapter5.dfs.DfsArticulationVertices;
 import com.skiena.chapter5.dfs.DfsDataStructure;
 import com.skiena.chapter5.dfs.DfsFindCycles;
 import com.skiena.chapter5.dfs.DfsPrint;
 import com.skiena.chapter5.dfs.DfsStrongComponents;
 import com.skiena.chapter5.dfs.DfsTopologicalSorting;
+import com.skiena.chapter5.graph.Graph;
+import com.skiena.chapter5.graph.Vertex;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

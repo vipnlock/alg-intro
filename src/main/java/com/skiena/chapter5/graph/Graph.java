@@ -28,19 +28,19 @@ public class Graph {
         numberOfVertices++;
     }
 
-    public void insertEdge(final int fromVertexId, final int toVertexId) {
-        this.insertEdge(fromVertexId, toVertexId, isDirected);
+    public void insertEdge(final int fromVertexId, final int toVertexId, final int weight) {
+        this.insertEdge(fromVertexId, toVertexId, weight, isDirected);
     }
 
-    private void insertEdge(final int v1Id, final int v2Id, final boolean directed) {
-        edges[v1Id] = new Edge(v2Id,0, edges[v1Id]);
+    private void insertEdge(final int v1Id, final int v2Id, final int weight, final boolean directed) {
+        edges[v1Id] = new Edge(v2Id,weight, edges[v1Id]);
 
         outDegree[v1Id]++;
 
         if (directed) {
             numberOfEdges++;
         } else {
-            insertEdge(v2Id, v1Id, true);
+            insertEdge(v2Id, v1Id, weight, true);
         }
     }
 
@@ -76,6 +76,29 @@ public class Graph {
         return vertices;
     }
 
+    public FullEdge[] getAllEdges() {
+        FullEdge[] allEdges = new FullEdge[numberOfEdges];
+        int index = 0;
+
+        for (int i = 1; i <= numberOfVertices; i++) {
+            Vertex current = getVertex(i);
+
+            Edge edge = getEdges(current);
+            while (edge != null) {
+                if (current.getId() <= edge.getToVertexId() || isDirected) {
+                    allEdges[index++] = new FullEdge(current, getVertex(edge.getToVertexId()), isDirected, edge.getWeight());
+                }
+
+                edge = edge.getNext();
+            }
+        }
+
+        if (index != numberOfEdges) {
+            throw new IllegalStateException("Incorrect amount of edges found: " + index + ", registered in graph parameter: " + numberOfEdges);
+        }
+        return allEdges;
+    }
+
     public void invertEdgesOrder() {
         for (int i = 1; i <= numberOfEdges; i++) {
             if (edges[i] != null) {
@@ -96,6 +119,7 @@ public class Graph {
             sb.append(i).append("[").append(outDegree[i]).append("]: ");
             var edge = edges[i];
             while (edge != null) {
+                sb.append("[").append(edge.getWeight()).append("] ");
                 sb.append("V_").append(vertices[edge.getToVertexId()]).append(" -> ");
                 edge = edge.getNext();
             }

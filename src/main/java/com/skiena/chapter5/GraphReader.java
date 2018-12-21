@@ -13,7 +13,7 @@ public class GraphReader {
 
     private static final Pattern CAPTION_PATTERN = Pattern.compile("(\\d+);(\\d+);(true|false)");
     private static final String VERTEX_PATTERN_STR = "(\\d+):(\\d+),(\\d+)";
-    private static final String EDGE_PATTERN_STR = "\\((\\d+),(\\d+)\\)";
+    private static final String EDGE_PATTERN_STR = "\\((\\d+),(\\d+)\\)(:\\d+)?";
     private static final Pattern VERTEX_PATTERN = Pattern.compile(VERTEX_PATTERN_STR);
     private static final Pattern EDGE_PATTERN = Pattern.compile(EDGE_PATTERN_STR);
 
@@ -51,7 +51,8 @@ public class GraphReader {
                         if (matcher.matches()) {
                             var fromVertexId = Integer.parseInt(matcher.group(1));
                             var toVertexId = Integer.parseInt(matcher.group(2));
-                            graph.insertEdge(fromVertexId, toVertexId);
+                            var weight = matcher.group(3) != null ? Integer.parseInt(matcher.group(3).substring(1)) : 0;
+                            graph.insertEdge(fromVertexId, toVertexId, weight);
                         } else {
                             System.out.println("Ignore unparseable line: " + line);
                         }
