@@ -2,6 +2,7 @@ package com.skiena.chapter6;
 
 import com.skiena.chapter5.graph.Graph;
 import com.skiena.chapter5.graph.Vertex;
+import com.skiena.chapter6.shortestpath.Dijkstra;
 import com.skiena.chapter6.mst.Kruskal;
 import com.skiena.chapter6.mst.Prim;
 import org.junit.jupiter.api.DisplayName;
@@ -35,6 +36,16 @@ class MinimumSpanningTreeTest {
     void testKruskal() throws IOException {
         Graph graph = TestGraphSource.minSpanningTreeGraph();
         new Kruskal().kruskal(graph);
+    }
+
+    @Test
+    @DisplayName("Dijkstra algorithm, find shortest path")
+    void testDijkstra() throws IOException {
+        Graph graph = TestGraphSource.minSpanningTreeGraph();
+        Vertex[] parent = new Dijkstra().dijkstra(graph, graph.getVertex(1));
+        Dijkstra.findPath(graph.getVertex(1), graph.getVertex(6), parent);
+        System.out.println();
+        Dijkstra.findPath(graph.getVertex(1), graph.getVertex(3), parent);
     }
 
 }
