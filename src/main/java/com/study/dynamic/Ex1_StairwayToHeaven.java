@@ -1,4 +1,4 @@
-package com.study;
+package com.study.dynamic;
 
 /**
  * You want to reach heaven that is on the top of this staircase.

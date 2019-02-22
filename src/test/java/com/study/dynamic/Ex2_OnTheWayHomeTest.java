@@ -1,5 +1,6 @@
-package com.study;
+package com.study.dynamic;
 
+import com.study.dynamic.Ex2_OnTheWayHome;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

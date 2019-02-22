@@ -7,12 +7,21 @@ public class Edge {
     private final int toVertexId;
 
     private final int weight;
+    // alternative flow-approach
+    private final int capacity;
+    private int flowCapacity;
+    private int residualCapacity;
 
     private Edge next;
 
     public Edge(int toVertexId, int weight, Edge next) {
         this.toVertexId = toVertexId;
+
         this.weight = weight;
+        this.capacity = weight;
+        this.flowCapacity = 0;
+        this.residualCapacity = 0;
+
         this.next = next;
     }
 
@@ -22,6 +31,24 @@ public class Edge {
 
     public int getWeight() {
         return weight;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setFlowCapacity(int flowCapacity) {
+        this.flowCapacity = flowCapacity;
+    }
+    public int getFlowCapacity() {
+        return flowCapacity;
+    }
+
+    public void setResidualCapacity(int residualCapacity) {
+        this.residualCapacity = residualCapacity;
+    }
+    public int getResidualCapacity() {
+        return residualCapacity;
     }
 
     public void setNext(Edge next) {

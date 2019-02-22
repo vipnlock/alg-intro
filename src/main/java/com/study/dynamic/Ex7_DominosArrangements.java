@@ -1,4 +1,4 @@
-package com.study;
+package com.study.dynamic;
 
 /**
  * You are given a 2xN grid and infinite dominos of size each 1x2.

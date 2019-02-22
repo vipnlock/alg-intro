@@ -1,4 +1,4 @@
-package com.study;
+package com.study.dynamic;
 
 /**
  * You are being given an integer array named myArray.

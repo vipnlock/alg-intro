@@ -1,4 +1,4 @@
-package com.study;
+package com.study.dynamic;
 
 /**
  * You are located in the top-left corner of a m x n grid.

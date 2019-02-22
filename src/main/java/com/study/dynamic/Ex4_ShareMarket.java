@@ -1,4 +1,4 @@
-package com.study;
+package com.study.dynamic;
 
 /**
  * You are being given an array in which the i'th element is the price of the given stock on day 'i'.

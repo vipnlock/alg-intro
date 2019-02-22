@@ -1,5 +1,6 @@
-package com.study;
+package com.study.dynamic;
 
+import com.study.dynamic.Ex8_StairwayToHeaven2;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

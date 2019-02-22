@@ -1,5 +1,6 @@
-package com.study;
+package com.study.dynamic;
 
+import com.study.dynamic.Ex6_LongestIncreasingSubsequence;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
