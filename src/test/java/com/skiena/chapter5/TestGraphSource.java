@@ -68,4 +68,10 @@ public class TestGraphSource {
         return g;
     }
 
+    public static Graph stronglyConnectedGraphAlgolicious() throws IOException {
+        Graph g = new GraphReader().read(new File("src/test/resources/algolicious/strongly_connected_components.txt"));
+        System.out.println(g.toString());
+        return g;
+    }
+
 }
