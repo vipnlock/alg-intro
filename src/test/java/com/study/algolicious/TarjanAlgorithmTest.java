@@ -1,13 +1,11 @@
 package com.study.algolicious;
 
-import com.skiena.chapter5.TestGraphSource;
-import com.skiena.chapter5.graph.Graph;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import com.skiena.chapter5.graph.Graph;
 
 class TarjanAlgorithmTest {
 
@@ -19,7 +17,7 @@ class TarjanAlgorithmTest {
 
     @Test
     void execute2() throws IOException {
-        Graph g = TestGraphSource.stronglyConnectedGraph();
+        Graph g = com.skiena.chapter5.TestGraphSource.stronglyConnectedGraph();
         System.out.println(Arrays.toString(new TarjanAlgorithm(g).execute()));
     }
 

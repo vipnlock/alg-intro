@@ -62,7 +62,9 @@ public class SearchDataStructure {
      * Helper methods.
      */
     public void findPath(Vertex vStart, Vertex vEnd) {
-        if (vEnd == null || vStart.getId() == vEnd.getId()) {
+        if (vEnd == null) {
+            System.out.println("No path from " + vStart.getId());
+        } else if (vStart.getId() == vEnd.getId()) {
             System.out.print("Path: " + vStart);
         } else {
             findPath(vStart, parent[vEnd.getId()]);

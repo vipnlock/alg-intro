@@ -13,6 +13,12 @@ public class Vertex {
         this.value2 = value2;
     }
 
+    public Vertex(Vertex vertex) {
+        this.id = vertex.id;
+        this.value1 = vertex.value1;
+        this.value2 = vertex.value2;
+    }
+
     public int getId() {
         return id;
     }
