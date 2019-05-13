@@ -1,6 +1,5 @@
 package com.skiena.chapter5;
 
-import com.skiena.chapter5.GraphReader;
 import com.skiena.chapter5.graph.Graph;
 
 import java.io.File;

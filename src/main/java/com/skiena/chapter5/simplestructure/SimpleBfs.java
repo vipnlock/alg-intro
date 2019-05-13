@@ -38,6 +38,9 @@ public class SimpleBfs {
 
     public void addEdge(int i, int j) {
         adj[i].add(j);
+        if (!directed && i != j) {
+            adj[j].add(i);
+        }
     }
 
     public void bfs(int start) {
@@ -61,42 +64,36 @@ public class SimpleBfs {
             }
             // System.out.println("Late process of vertex " + current);
         }
-        printBfsTree(parent);
     }
 
     public static void main(String[] argv) {
-        SimpleBfs g = new SimpleBfs(4, false);
+        SimpleBfs g = new SimpleBfs(6, false);
         g.addEdge(0, 1);
-        g.addEdge(1, 0);
-
-        g.addEdge(0, 2);
-        g.addEdge(2, 0);
-
+        g.addEdge(0, 4);
+        g.addEdge(0, 5);
         g.addEdge(1, 2);
-        g.addEdge(2, 1);
+        g.addEdge(1, 4);
+        g.addEdge(2, 3);
+        g.addEdge(3, 4);
 
-        g.addEdge(1, 3);
-        g.addEdge(3, 1);
-
-        g.addEdge(3, 3);
-
-        g.bfs(2);
+        g.bfs(0);
+        g.printBfsTree();
     }
 
-    private void printBfsTree(int[] parent) {
+    private void printBfsTree() {
         for (int i = 0; i < parent.length; i++) {
             if (parent[i] == -1) {
                 System.out.println(i + ": start of BFS");
             } else {
-                printBfsTree(parent, i);
+                printBfsTree(i);
                 System.out.println();
             }
         }
     }
 
-    private void printBfsTree(int[] parent, int i) {
+    private void printBfsTree(int i) {
         if (parent[i] != -1) {
-            printBfsTree(parent, parent[i]);
+            printBfsTree(parent[i]);
         }
         System.out.print(i + "->");
     }

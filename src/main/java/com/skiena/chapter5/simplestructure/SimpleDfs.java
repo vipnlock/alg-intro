@@ -69,8 +69,41 @@ public class SimpleDfs {
             }
         }
 
-        System.out.println("Late process vertex " + current);
         processed[current] = true;
         exit[current] = ++time;
+        System.out.println("Late process vertex " + current);
     }
+
+    private void printParentTree() {
+        for (int i = 0; i < parent.length; i++) {
+            if (parent[i] == -1) {
+                System.out.println(i + ": start of DFS");
+            } else {
+                printParentTree(i);
+            }
+            System.out.println();
+        }
+    }
+
+    private void printParentTree(int i) {
+        if (parent[i] != -1) {
+            printParentTree(parent[i]);
+        }
+        System.out.print(i + "->");
+    }
+
+    public static void main(String[] argv) {
+        SimpleDfs g = new SimpleDfs(6, false);
+        g.addEdge(0, 1);
+        g.addEdge(0, 4);
+        g.addEdge(0, 5);
+        g.addEdge(1, 2);
+        g.addEdge(1, 4);
+        g.addEdge(2, 3);
+        g.addEdge(3, 4);
+
+        g.dfs(0);
+        g.printParentTree();
+    }
+
 }
