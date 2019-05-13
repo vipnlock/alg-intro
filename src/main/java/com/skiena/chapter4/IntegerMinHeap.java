@@ -1,4 +1,4 @@
-package com.skiena.chapter3;
+package com.skiena.chapter4;
 
 public class IntegerMinHeap {
 

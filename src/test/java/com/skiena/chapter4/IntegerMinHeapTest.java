@@ -1,7 +1,8 @@
-package com.skiena.chapter3;
+package com.skiena.chapter4;
 
 import java.util.Arrays;
 
+import com.skiena.chapter4.IntegerMinHeap;
 import org.junit.jupiter.api.Test;
 
 class IntegerMinHeapTest {
