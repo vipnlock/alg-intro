@@ -60,8 +60,17 @@ public class SimpleDfs {
                 parent[next] = current;
                 System.out.println("Process Tree Edge (" + current + "->" + next + ")");
                 dfs(next);
-            } else if (!processed[next] || directed) {
+            } else if (!processed[next] && (parent[current] != next || directed)) {
                 System.out.println("Process Back Edge (" + current + "->" + next + ")");
+            } else if (processed[next] && directed) {
+                if (enter[next] > enter[current]) {
+                    System.out.println("Process FORWARD Edge (" + current + "->" + next + ")");
+                }
+                if (enter[next] < enter[current]) {
+                    System.out.println("Process CROSS Edge (" + current + "->" + next + ")");
+                }
+            } else {
+                System.out.println("-- Ignore same Edge (" + current + "->" + next + ")");
             }
 
             if (finished) {
@@ -93,6 +102,11 @@ public class SimpleDfs {
     }
 
     public static void main(String[] argv) {
+        testUndirectedGraph();
+        testDirectedGraph();
+    }
+
+    private static void testUndirectedGraph() {
         SimpleDfs g = new SimpleDfs(6, false);
         g.addEdge(0, 1);
         g.addEdge(0, 4);
@@ -101,6 +115,22 @@ public class SimpleDfs {
         g.addEdge(1, 4);
         g.addEdge(2, 3);
         g.addEdge(3, 4);
+
+        g.dfs(0);
+        g.printParentTree();
+    }
+
+    private static void testDirectedGraph() {
+        SimpleDfs g = new SimpleDfs(6, true);
+        g.addEdge(0, 1);
+        g.addEdge(1, 0);
+        g.addEdge(0, 5);
+        g.addEdge(1, 2);
+        g.addEdge(1, 4);
+        g.addEdge(2, 3);
+        g.addEdge(3, 4);
+        g.addEdge(4, 0);
+        g.addEdge(5, 4);
 
         g.dfs(0);
         g.printParentTree();
