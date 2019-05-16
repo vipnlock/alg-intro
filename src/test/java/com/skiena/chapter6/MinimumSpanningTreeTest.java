@@ -32,7 +32,7 @@ class MinimumSpanningTreeTest {
     }
 
     @Test
-    @DisplayName("Prim for MST")
+    @DisplayName("Kruskal for MST")
     void testKruskal() throws IOException {
         Graph graph = TestGraphSource.minSpanningTreeGraph();
         new Kruskal().kruskal(graph);

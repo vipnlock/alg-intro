@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class SimpleDfs {
 
-    private int vCount;
+    private int n;  // number of vertices
     private LinkedList<Integer>[] adj;
     private boolean directed;
 
@@ -19,24 +19,24 @@ public class SimpleDfs {
     private boolean[] processed;
     private int[] parent;
 
-    public SimpleDfs(int vCount, boolean directed) {
-        this.vCount = vCount;
+    public SimpleDfs(int n, boolean directed) {
+        this.n = n;
         this.directed = directed;
 
-        this.adj = new LinkedList[vCount];
-        for (int i = 0; i < vCount; i++) {
+        this.adj = new LinkedList[n];
+        for (int i = 0; i < n; i++) {
             this.adj[i] = new LinkedList<>();
         }
 
-        this.discovered = new boolean[vCount];
-        this.processed = new boolean[vCount];
-        this.parent = new int[vCount];
-        for (int i = 0; i < vCount; i++) {
+        this.discovered = new boolean[n];
+        this.processed = new boolean[n];
+        this.parent = new int[n];
+        for (int i = 0; i < n; i++) {
             this.parent[i] = -1;
         }
 
-        this.enter = new int[vCount];
-        this.exit = new int[vCount];
+        this.enter = new int[n];
+        this.exit = new int[n];
     }
 
     public void addEdge(int i, int j) {
